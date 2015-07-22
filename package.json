@@ -1,0 +1,30 @@
+{
+  "name": "cms",
+  "version": "0.1.0",
+  "description": "Content Management System that connects to third party APIs like Facebook, Twitter, and Flickr",
+  "main": "index.js",
+  "scripts": {
+    "harness": "node ./node_modules/tuxharness/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "CMS",
+    "API",
+    "Facebook",
+    "Twitter",
+    "Flickr"
+  ],
+  "author": "Justine Batiforra",
+  "license": "MIT",
+  "devDependencies": {
+    "tuxharness": "^2.0.2"
+  },
+  "dependencies": {
+    "dustjs-linkedin": "^2.7.2",
+    "hapi": "^8.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:justinebatiforra/cms.git"
+  }
+}
