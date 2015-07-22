@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://www.domaindesign.ca/vanarts/api2015Q3/public/07/2flickr.html -->
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <title>2flickr.html</title>
+    </head>
+
+    <body>
+        <h1>CMS</h1>
+        <h2>Flickr</h2>
+
+        <h3>Goal</h3>
+        <p>As a user, I want to see photos tagged with Vancouver.</p>
+        <p>As a dev, I want to search Flickr's API for photos with the tag "Vancouver"</p>
+
+        <h3>Technologies</h3>
+        <ul>
+            <li>Flickr API</li>
+            <li>JavaScript</li>
+            <li>jQuery</li>
+            <li>jQuery AJAX</li>
+        </ul>
+
+        <h3>Live demo</h3>
+        
+        <ul id="photo_titles">
+        </ul>
+
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="../js/credentials.js"></script>
+        
+        <script>
+            /*
+             * 1. Prove the Flickr data is relevant; open a new browser tab, ensure the JSON response contains enough info to build a JPG path; Get API key
+             * 2. Attach credentials.js and jQuery to our document
+             * 3. Use jQuery AJAX to connect to Flickr API
+             * 4. On success, set a breakpoint and ensure JSON response is matches expected format, schema, and has valid content
+             * 5. Commit to Git
+             */
+            
+            $.ajax({
+                "url": 'https://api.flickr.com/services/rest/',
+                "data": {
+                    "method": 'flickr.photos.search',
+                    "api_key": credentials.flickr.api_key,
+                    "tags": 'vancouver',
+                    "format": 'json',
+                    "nojsoncallback": 1
+                },
+                "success": function (response) {
+                    //console.log(response.photos.photo[1].title);
+                    
+                    /*
+                     * Goal: Output every photo title in a bulletted list
+                     * 1. Understand the JSON schema, find photo titles
+                     * 2. Determine the dot syntax path in the resonse to create a loop on an array
+                     * 3. Loop through photos
+                     * 4. Output titles to console
+                     * 5. Stage code mileston to local Git
+                     */
+                    $.each(response.photos.photo, function (x, photo) {
+                        //console.log(photo.title);
+                        $('#photo_titles').append('<li>' + photo.title + '</li>');
+                    });
+                }
+            });
+        </script>
+
+    </body>
+</html>
