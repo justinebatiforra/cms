@@ -23,5 +23,32 @@
             <li>node.js</li>
             <li>hapi.js</li>
         </ul>
+
+        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+
+        <script>
+            $.ajax({
+                url: '/flickr',
+                success: function (response) {
+                    var photoListObj = jQuery.parseJSON(response),
+                        photoHtml = "",
+                        thumb, photoUrl, photoTitle;
+
+                    $.each(photoListObj.photos.photo, function (x, photo) {
+                        thumb = photo.url_t;
+                        photoUrl = photo.url_o;
+                        photoTitle = photo.title;
+                        
+                        if (photoUrl != null) {
+                            photoHtml += '<a href="' + photoUrl + '" target="_blank">';
+                            photoHtml += '<img src="' + thumb + '" alt="' + photoTitle + '", title="' + photoTitle + '"';
+                            photoHtml += '</a>&nbsp';
+                        }
+                    });
+                    
+                    $('body').append(photoHtml);
+                }
+            });
+        </script>
     </body>
 </html>

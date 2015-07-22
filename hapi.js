@@ -25,7 +25,8 @@ server.route({
             data = {
                 "method": 'flickr.photos.search',
                 "api_key": credentials.flickr.api_key,
-                "tags": 'vancouver',
+                "tags": 'Vancouver',
+                "extras": 'url_o, url_t',
                 "format": 'json',
                 "nojsoncallback": 1
             }, 
@@ -36,7 +37,9 @@ server.route({
         
         httpRequest(options, function (error, response, body) {
             if (!error && response.statusCode == 200) {
-                reply(body); // Show the HTML for the Google homepage in CLI (cmd line interface)
+                reply(body); 
+                
+                // use classic javascript to iterate over response object and extract only the info necessary (photo urls and titles?)
             }
         });
         
